@@ -26,7 +26,7 @@ def visualize_tsne(centroids, descriptors, num_clusters):
     combined_data = np.vstack([selected_features, centroids])
 
     # Apply t-SNE for dimensionality reduction
-    tsne_model = TSNE(n_components=2, perplexity=30, random_state=42)
+    tsne_model = TSNE(n_components=2, perplexity=30, random_state=22)
     reduced_data = tsne_model.fit_transform(combined_data)
 
     # Split transformed data back into respective sets
