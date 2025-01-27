@@ -35,8 +35,8 @@ def visualize_tsne(centroids, descriptors, num_clusters):
 
     # Plot the t-SNE results
     plt.figure(figsize=(10, 6))
-    plt.scatter(features_2d[:, 0], features_2d[:, 1], color='blue', alpha=0.6, label='Feature Descriptors')
-    plt.scatter(centroids_2d[:, 0], centroids_2d[:, 1], color='red', marker='X', s=100, label='Cluster Centroids')
+    plt.scatter(features_2d[:, 0], features_2d[:, 1], color='yellow', alpha=0.6, label='Feature Descriptors')
+    plt.scatter(centroids_2d[:, 0], centroids_2d[:, 1], color='green', marker='O', s=100, label='Cluster Centroids')
     plt.title(f't-SNE Visualization of SIFT Features (n={len(selected_features)}) & Clusters (k={num_clusters})')
     plt.legend()
     plt.xlabel('t-SNE Dim 1')
