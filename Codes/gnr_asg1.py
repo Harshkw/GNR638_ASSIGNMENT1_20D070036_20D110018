@@ -38,20 +38,20 @@ import numpy as np
 #results are presented.
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--feature', help='feature', type=str, default='dumy_feature')
-parser.add_argument('--classifier', help='classifier', type=str, default='dumy_classifier')
+parser.add_argument('--feature', help='feature', type=str, default='bag_of_sift')
+parser.add_argument('--classifier', help='classifier', type=str, default='support_vector_machine')
 args = parser.parse_args()
 
-DATA_PATH = '../data/'
+DATA_PATH = "F:/10TH_SEM/GNR638_ASSIGNMENT1_20D070036_20D110018/GNR638_ASSIGNMENT1_20D070036_20D110018-1/DATA/data"
 
 #This is the list of categories / directories to use. The categories are
 #somewhat sorted by similarity so that the confusion matrix looks more
 #structured (indoor and then urban and then rural).
 
-CATEGORIES = ['Agricultural', 'Airplane', 'BaseballDiamond', 'Beach', 'Buildings', 'Chaparral',
-              'DenseResidential', 'Forest', 'Freeway', 'GolfCourse', 'Harbor', 'Intersection',
-              'MediumResidential', 'MobileHomePark', 'Overpass', 'ParkingLot', 'River', 'Runway',
-              'SparseResidential', 'StorageTanks', 'TennisCourt']
+CATEGORIES = ['agricultural', 'airplane', 'baseballdiamond', 'beach', 'buildings', 'chaparral',
+              'denseresidential', 'forest', 'freeway', 'golfcourse', 'harbor', 'intersection',
+              'mediumresidential', 'mobilehomepark', 'overpass', 'parkinglot', 'river', 'runway',
+              'sparseresidential', 'storagetanks', 'tenniscourt']
 
 CATE2ID = {v: k for k, v in enumerate(CATEGORIES)}
 
@@ -70,8 +70,8 @@ CLASSIFIER = args.classifier
 #simplicity, we assume this is the number of test cases per category, as
 #well.
 
-NUM_TRAIN_PER_CAT = 70
-NUM_TEST_PER_CAT = 20
+#NUM_TRAIN_PER_CAT = 0.7
+#NUM_TEST_PER_CAT = 0.2
 
 
 def main():
@@ -81,7 +81,7 @@ def main():
     #entry is a string.
     print("Getting paths and labels for all train and test data")
     train_image_paths, test_image_paths, train_labels, test_labels = \
-        get_image_paths(DATA_PATH, CATEGORIES, NUM_TRAIN_PER_CAT, NUM_TEST_PER_CAT)
+        get_image_paths(DATA_PATH, CATEGORIES)
 
     # TODO Step 1:
     # Represent each image with the appropriate feature
@@ -99,7 +99,7 @@ def main():
         # YOU CODE build_vocabulary.py
         if os.path.isfile('vocab.pkl') is False:
             print('No existing visual word vocabulary found. Computing one from training images\n')
-            vocab_size = 100   ### Vocab_size is up to you. Larger values will work better (to a point) but be slower to comput.
+            vocab_size = 50   ### Vocab_size is up to you. Larger values will work better (to a point) but be slower to comput.
             vocab = create_vocabulary(train_image_paths, vocab_size)
             with open('vocab.pkl', 'wb') as handle:
                 pickle.dump(vocab, handle, protocol=pickle.HIGHEST_PROTOCOL)

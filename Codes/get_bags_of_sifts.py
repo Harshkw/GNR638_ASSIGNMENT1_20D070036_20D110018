@@ -43,7 +43,8 @@ def get_bags_of_sifts(image_paths):
     print("Construct bags of sifts...")
     
     for path in image_paths:
-        img = np.asarray(Image.open(path),dtype='float32')
+
+        img = np.asarray(Image.open(path).convert('L'),dtype='float32')
         frames, descriptors = dsift(img, step=[1,1], fast=True)
         dist = distance.cdist(vocab, descriptors, metric='euclidean')
         idx = np.argmin(dist, axis=0)
