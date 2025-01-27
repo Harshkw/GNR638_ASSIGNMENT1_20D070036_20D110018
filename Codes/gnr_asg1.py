@@ -70,8 +70,8 @@ CLASSIFIER = args.classifier
 #simplicity, we assume this is the number of test cases per category, as
 #well.
 
-NUM_TRAIN_PER_CAT = 75
-NUM_TEST_PER_CAT = 15
+NUM_TRAIN_PER_CAT = 70
+NUM_TEST_PER_CAT = 20
 
 
 def main():
