@@ -42,7 +42,7 @@ parser.add_argument('--feature', help='feature', type=str, default='bag_of_sift'
 parser.add_argument('--classifier', help='classifier', type=str, default='support_vector_machine')
 args = parser.parse_args()
 
-DATA_PATH = "F:/10TH_SEM/GNR638_ASSIGNMENT1_20D070036_20D110018/GNR638_ASSIGNMENT1_20D070036_20D110018-1/DATA/data"
+DATA_PATH = "F:/10TH_SEM/clone/GNR638_ASSIGNMENT1_20D070036_20D110018/data/data/"
 
 #This is the list of categories / directories to use. The categories are
 #somewhat sorted by similarity so that the confusion matrix looks more
@@ -99,7 +99,7 @@ def main():
         # YOU CODE build_vocabulary.py
         if os.path.isfile('vocab.pkl') is False:
             print('No existing visual word vocabulary found. Computing one from training images\n')
-            vocab_size = 50   ### Vocab_size is up to you. Larger values will work better (to a point) but be slower to comput.
+            vocab_size = 100   ### Vocab_size is up to you. Larger values will work better (to a point) but be slower to comput.
             vocab = create_vocabulary(train_image_paths, vocab_size)
             with open('vocab.pkl', 'wb') as handle:
                 pickle.dump(vocab, handle, protocol=pickle.HIGHEST_PROTOCOL)

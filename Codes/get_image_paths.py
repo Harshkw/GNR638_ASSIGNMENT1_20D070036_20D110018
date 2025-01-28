@@ -13,7 +13,6 @@ def get_image_paths(data_path, categories):
     for category in categories:
 
         image_paths = glob(os.path.join(data_path, 'train', category, '*.jpg'))
-        print(image_paths)
         for i in range(len(image_paths)):
             #print("1")
             train_image_paths.append(image_paths[i])
