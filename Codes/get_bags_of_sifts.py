@@ -6,6 +6,7 @@ import scipy.spatial.distance as distance
 from cyvlfeat.sift.dsift import dsift
 from time import time
 import pdb
+from tqdm import tqdm
 
 def get_bags_of_sifts(image_paths):
     ############################################################################
@@ -42,8 +43,8 @@ def get_bags_of_sifts(image_paths):
     start_time = time()
     print("Construct bags of sifts...")
     
-    for path in image_paths:
-
+    for i in tqdm(range(len(image_paths))):
+        path = image_paths[i]
         img = np.asarray(Image.open(path).convert('L'),dtype='float32')
         frames, descriptors = dsift(img, step=[1,1], fast=True)
         dist = distance.cdist(vocab, descriptors, metric='euclidean')

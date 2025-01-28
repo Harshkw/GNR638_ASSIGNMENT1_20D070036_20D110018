@@ -97,28 +97,28 @@ def main():
 
     elif FEATURE == 'bag_of_sift':
         # YOU CODE build_vocabulary.py
-        if os.path.isfile('vocab.pkl') is False:
+        if os.path.isfile('vocab_50.pkl') is False:
             print('No existing visual word vocabulary found. Computing one from training images\n')
-            vocab_size = 100   ### Vocab_size is up to you. Larger values will work better (to a point) but be slower to comput.
+            vocab_size = 50  ### Vocab_size is up to you. Larger values will work better (to a point) but be slower to comput.
             vocab = create_vocabulary(train_image_paths, vocab_size)
-            with open('vocab.pkl', 'wb') as handle:
+            with open('vocab_50.pkl', 'wb') as handle:
                 pickle.dump(vocab, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-        if os.path.isfile('train_image_feats_1.pkl') is False:
+        if os.path.isfile('train_image_feats_50.pkl') is False:
             # YOU CODE get_bags_of_sifts.py
             train_image_feats = get_bags_of_sifts(train_image_paths);
-            with open('train_image_feats_1.pkl', 'wb') as handle:
+            with open('train_image_feats_50.pkl', 'wb') as handle:
                 pickle.dump(train_image_feats, handle, protocol=pickle.HIGHEST_PROTOCOL)
         else:
-            with open('train_image_feats_1.pkl', 'rb') as handle:
+            with open('train_image_feats_50.pkl', 'rb') as handle:
                 train_image_feats = pickle.load(handle)
 
-        if os.path.isfile('test_image_feats_1.pkl') is False:
+        if os.path.isfile('test_image_feats_50.pkl') is False:
             test_image_feats  = get_bags_of_sifts(test_image_paths);
-            with open('test_image_feats_1.pkl', 'wb') as handle:
+            with open('test_image_feats_50.pkl', 'wb') as handle:
                 pickle.dump(test_image_feats, handle, protocol=pickle.HIGHEST_PROTOCOL)
         else:
-            with open('test_image_feats_1.pkl', 'rb') as handle:
+            with open('test_image_feats_50.pkl', 'rb') as handle:
                 test_image_feats = pickle.load(handle)
     elif FEATURE == 'dumy_feature':
         train_image_feats = []
